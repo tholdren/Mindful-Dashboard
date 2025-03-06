@@ -9,7 +9,176 @@
  */
 
 /* temp background color */
+/* General Styles */
+:root {
+  --primary-color: var(--cyan-9);
+  --secondary-color: var(--cyan-7);
+  --accent-color: var(--purple-6);
+  --background-color: var(--gray-1);
+  --text-color: var(--gray-9);
+  --shadow-strength: 5%;
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 body {
-  background: var( --lime-4 );
+  background: var(--gradient-7);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  padding: var(--size-6);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-down forwards;
+  animation-timing-function: var(--ease-out-3);
+  animation-duration: 800ms;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion) {
+  body {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Bento container */
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--size-5);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: var(--shadow-6);
+  background: var(--opacity-75);
+  border-radius: var(--radius-3);
+  animation: var(--animation-fade-in) forwards;
+}
+
+/* Bento items */
+.bento-item {
+  background-color: var(--gray-0);
+  border-radius: var(--radius-3);
+  padding: var(--size-5);
+  box-shadow: var(--shadow-3);
+  transition: transform var(--transition-ease-out), 
+              box-shadow var(--transition-ease-out);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 150px;
+}
+
+.bento-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-4);
+}
+
+/* Feature items */
+.feature-1 {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+}
+
+.feature-2 {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.feature-3 {
+  background-color: var(--indigo-2);
+  color: var(--indigo-9);
+}
+
+/* Time styling */
+.time {
+  font-size: var(--font-size-7);
+  font-weight: var(--font-weight-9);
+  letter-spacing: var(--font-letterspacing-2);
+}
+
+.amOrPm {
+  font-size: var(--font-size-3);
+  vertical-align: super;
+  margin-left: var(--size-1);
+}
+
+/* Date styling */
+.date {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-7);
+}
+
+.dayOfWeek {
+  font-weight: var(--font-weight-6);
+  color: var(--indigo-7);
+}
+
+/* Numbers and stats */
+.streakOfDays,
+.daysUntilEvent,
+.ageOfPerson {
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-8);
+  color: var(--primary-color);
+  display: block;
+  margin-top: var(--size-2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bento-container {
+    grid-template-columns: 1fr;
   }
   
+  .feature-1 {
+    grid-column: span 1;
+  }
+  
+  .time {
+    font-size: var(--font-size-6);
+  }
+  
+  .date {
+    font-size: var(--font-size-4);
+  }
+}
+
+/* Animation for clock */
+.seconds {
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+/* Enhance accessibility */
+@media (prefers-reduced-motion) {
+  .seconds {
+    animation: none;
+  }
+  
+  .bento-item {
+    transition: none;
+  }
+}
